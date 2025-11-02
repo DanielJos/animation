@@ -1,0 +1,64 @@
+{
+  "name": "@danieljos/animation",
+  "version": "1.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@mui/icons-material": "^6 || ^7",
+    "@mui/material": "^6 || ^7",
+    "@tanstack/react-query": "^5",
+    "leaflet": "^1.9",
+    "react": ">=18 <20",
+    "react-dom": ">=18 <20",
+    "react-leaflet": "^4 || ^5"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "@storybook/react-vite": "^9.1.8",
+    "@types/leaflet": "^1.9.20",
+    "@types/node": "^20.19.17",
+    "@types/react": "^18.3.24",
+    "@types/react-dom": "^18.3.7",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "husky": "^9.1.7",
+    "semantic-release": "^24.2.9",
+    "storybook": "^9.1.8",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.20",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.24"
+  }
+}

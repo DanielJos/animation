@@ -1,0 +1,42 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  packages: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # semantic-release needs full history
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: "@danieljos"
+      - name: Configure npm auth for GitHub Packages
+        run: |
+          echo "@danieljos:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build --if-present
+        env:
+          CI: "false" # Don't treat warnings as errors
+      - name: Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # create releases/tags
+          NPM_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }} # publish to GH Packages
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }} # npm publish also respects this
