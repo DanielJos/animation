@@ -1,10 +1,11 @@
 // src/components/RetroMtrltyLoader.stories.tsx
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import SplitFlap from "./SplitFlap";
+import SplitFlapSingle from "./SplitFlap";
+import { getNext10, getNextAlphabetic } from "../getNext";
 
 const meta = {
   title: "Loaders/SplitFlap",
-  component: SplitFlap,
+  component: SplitFlapSingle,
   parameters: {
     layout: "fullscreen",
   },
@@ -27,14 +28,14 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof SplitFlap>;
+} satisfies Meta<typeof SplitFlapSingle>;
 
 export default meta;
 
-type Story = StoryObj<typeof SplitFlap>;
+type Story = StoryObj<typeof SplitFlapSingle>;
 
 export const Standard: Story = {
   render: (args) => {
-    return <SplitFlap {...args} />;
+    return <SplitFlapSingle {...args} />;
   },
 };

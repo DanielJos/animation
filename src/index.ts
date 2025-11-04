@@ -1,1 +1,1 @@
-export { default as SplitFlap } from "./components/SplitFlap/SplitFlap";
+export { default as SplitFlapSingle } from "./components/SplitFlap/SplitFlapSingle/SplitFlap";
